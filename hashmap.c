@@ -60,7 +60,7 @@ typedef int (*func_int)(int a, int b);
 int main() {
     hashmap_t *map = create_map();
     void *handle;
-    handle = dlopen("./modules/math.so", RTLD_LAZY);
+    handle = dlopen("./math.so", RTLD_LAZY);
     if (!handle) {
         fprintf(stderr, "%s\n", dlerror());
         return 1;
@@ -72,8 +72,8 @@ int main() {
     func_int f_add = (func_int)get(map, "add");
     func_int f_sub = (func_int)get(map, "sub");
 
-    // printf("add(1,2) = %d\n", add(1,2));
-    // printf("sub(5,3) = %d\n", sub(5,3));
+    printf("add(1,2) = %d\n", f_add(1,2));
+    printf("sub(5,3) = %d\n", f_sub(5,3));
 
     printf("addr add: %p\n", get(map, "add"));
     printf("addr sub: %p\n", get(map, "sub"));
